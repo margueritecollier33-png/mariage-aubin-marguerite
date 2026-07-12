@@ -28,18 +28,20 @@ const photos = [
 {
 title: "Aubin & Marguerite",
 subtitle: "Notre histoire",
-image: "url('https://tonpseudo.github.io/mariage-aubin-marguerite/Image1.jpg')"
+image: "url('https://margueritecollier33-png.github.io/mariage-aubin-marguerite/Image1.jpg')"
 },
 {
 title: "06 mars 2027",
 subtitle: "Nous avons hâte de célébrer avec vous",
-image: "url('https://tonpseudo.github.io/mariage-aubin-marguerite/Image2.jpg')"
+image: "url('https://margueritecollier33-png.github.io/mariage-aubin-marguerite/Image2.jpg')"
 },
 {
 title: "Carrousel de Baronville",
 subtitle: "Le lieu de notre mariage",
-image: "url('https://tonpseudo.github.io/mariage-aubin-marguerite/Image3.jpg')"
-];},{title:"Carrousel de Baronville",subtitle:"Rendez-vous le 06 mars 2027",image:"linear-gradient(135deg,#110a45,#0047ab,#f4d58d)"},{title:"Bleu cobalt & amour",subtitle:"On a hâte de célébrer avec vous",image:"linear-gradient(135deg,#001b44,#0047ab,#85d3ff)"}];let currentPhoto=0;function renderPhoto(){const stage=document.getElementById("photoStage"),title=document.getElementById("photoTitle"),subtitle=document.getElementById("photoSubtitle"),dots=document.getElementById("photoDots");stage.style.background=photos[currentPhoto].image;stage.style.backgroundSize="cover";stage.style.backgroundPosition="center";title.textContent=photos[currentPhoto].title;subtitle.textContent=photos[currentPhoto].subtitle;dots.innerHTML="";photos.forEach((photo,index)=>{const button=document.createElement("button");button.className=index===currentPhoto?"dot active":"dot";button.setAttribute("aria-label","Afficher la photo "+(index+1));button.onclick=()=>{currentPhoto=index;renderPhoto()};dots.appendChild(button)})}function nextPhoto(){currentPhoto=(currentPhoto+1)%photos.length;renderPhoto()}function previousPhoto(){currentPhoto=(currentPhoto-1+photos.length)%photos.length;renderPhoto()}renderPhoto();
+image: "url('https://margueritecollier33-png.github.io/mariage-aubin-marguerite/Image3.jpg')"
+}
+];
+let currentPhoto=0;function renderPhoto(){const stage=document.getElementById("photoStage"),title=document.getElementById("photoTitle"),subtitle=document.getElementById("photoSubtitle"),dots=document.getElementById("photoDots");stage.style.background=photos[currentPhoto].image;stage.style.backgroundSize="cover";stage.style.backgroundPosition="center";title.textContent=photos[currentPhoto].title;subtitle.textContent=photos[currentPhoto].subtitle;dots.innerHTML="";photos.forEach((photo,index)=>{const button=document.createElement("button");button.className=index===currentPhoto?"dot active":"dot";button.setAttribute("aria-label","Afficher la photo "+(index+1));button.onclick=()=>{currentPhoto=index;renderPhoto()};dots.appendChild(button)})}function nextPhoto(){currentPhoto=(currentPhoto+1)%photos.length;renderPhoto()}function previousPhoto(){currentPhoto=(currentPhoto-1+photos.length)%photos.length;renderPhoto()}renderPhoto();
     const weddingDate=new Date("2027-03-06T15:00:00+01:00");function updateCountdown(){const diff=weddingDate-new Date();if(diff<=0){["days","hours","minutes","seconds"].forEach(id=>document.getElementById(id).textContent="0");return}document.getElementById("days").textContent=Math.floor(diff/864e5);document.getElementById("hours").textContent=Math.floor(diff/36e5%24);document.getElementById("minutes").textContent=Math.floor(diff/6e4%60);document.getElementById("seconds").textContent=Math.floor(diff/1e3%60)}setInterval(updateCountdown,1000);updateCountdown();
     const form=document.getElementById("addressForm"),successMessage=document.getElementById("successMessage"),errorMessage=document.getElementById("errorMessage");form.addEventListener("submit",async function(event){event.preventDefault();successMessage.style.display="none";errorMessage.style.display="none";const formData=new FormData(form);try{const response=await fetch(form.action,{method:"POST",body:formData,headers:{Accept:"application/json"}});if(response.ok){form.reset();successMessage.style.display="inline"}else{errorMessage.style.display="inline"}}catch(e){errorMessage.style.display="inline"}});
   </script>
